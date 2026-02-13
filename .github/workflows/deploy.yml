@@ -17,6 +17,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -26,9 +30,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Run build script
-        run: |
-          python scripts/build_site.py
+      - name: Build site
+        run: python scripts/build_site.py
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
@@ -36,5 +39,45 @@ jobs:
           path: dist
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
