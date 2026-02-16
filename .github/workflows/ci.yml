@@ -8,7 +8,8 @@ on:
 jobs:
   test-lint:
     runs-on: ubuntu-latest
-
+    env:
+      PYTHONPATH: .
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,5 +29,5 @@ jobs:
 
       - name: Run Tests
         run: |
-          pytest
+          python -m pytest
 
